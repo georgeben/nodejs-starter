@@ -1,0 +1,29 @@
+{
+  "env": {
+      "es6": true,
+      "node": true,
+      "mocha": true
+  },
+  "extends": ["airbnb-base", "plugin:security/recommended"],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "plugins": [
+    "security"
+  ],
+  "parserOptions": {
+      "ecmaVersion": 2019,
+      "sourceType": "module"
+  },
+  "rules": {
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "strict": "off",
+    "max-len": [2, { "code": 124 }],
+    "camelcase": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/prefer-default-export": "off",
+    "func-names": "off",
+    "class-methods-use-this": "off"
+  }
+}

@@ -1,0 +1,32 @@
+version: "3"
+services: 
+  mongodb:
+    image: "mongo"
+    restart: "always"
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - mongodb-data:/data/db
+  miles-api:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./src:/home/node/nscdc_api/src
+    ports:
+      - "3001:3001"
+    depends_on: 
+      - "mongodb"
+    environment:
+      - DEV_DATABASE_URI=${DATABASE_URI}
+  mongo-express:
+    image: "mongo-express"
+    restart: "always"
+    ports: 
+      - "8081:8081"
+    environment: 
+      ME_CONFIG_MONGODB_SERVER: "mongodb"
+    depends_on: 
+      - "mongodb"
+volumes: 
+  mongodb-data:

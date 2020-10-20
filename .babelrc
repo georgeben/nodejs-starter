@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          // "node": "10.5.0",
+          "esmodules": true
+        }
+      }
+    ],
+    ["stage-0"]
+  ],
+  "plugins": [
+    "babel-plugin-transform-runtime"
+  ]
+}
