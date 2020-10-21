@@ -1,4 +1,4 @@
-name: Continuos Integration & Continuous Deployment workflow
+name: CI-CD-workflow
 
 on: [ push, pull_request ]
 
