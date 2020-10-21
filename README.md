@@ -1,5 +1,8 @@
 # Miles-api
-![](https://github.com/Miles-ng/miles-api/blob/master/.github/workflows/CI-CD-workflow/badge.svg)
+![](https://github.com/Miles-ng/miles-api/workflows/CI-CD-workflow/badge.svg)
+\
+\
+
 The API that powers both the miles.ng applications and the public API for making and tracking deliveries.
 
 ## Project Specification
