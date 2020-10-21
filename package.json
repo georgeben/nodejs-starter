@@ -10,7 +10,7 @@
     "test:unit": "NODE_ENV=test mocha --require babel-core/register \"src/test/unit/**/**/*.test.js\" --exit --timeout 20000 --recursive",
     "test:integration": "NODE_ENV=test mocha --require babel-core/register --require \"src/test/prepare\" \"src/test/integration/**/**/*.test.js\" --exit --timeout 20000 --recursive",
     "lint": "node_modules/.bin/eslint \"./src/**/*.js\"",
-     "db:seed": "node \"dist/scripts/seedDB.js\"",
+    "db:seed": "node \"dist/scripts/seedDB.js\"",
     "prestart": "npm run build && npm run db:seed",
     "start": "cross-env NODE_ENV=production pm2-runtime start ecosystem.config.js --env production",
     "docs": "jsdoc src -r -d docs"
