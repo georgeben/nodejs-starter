@@ -9,7 +9,7 @@ router
     res.status(200).json({
       message: "MilesNG API Documentation",
       links: {
-        documentation: "http://nscdc.org",
+        documentation: "http://miles.ng",
       },
     });
   })
