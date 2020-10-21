@@ -26,8 +26,8 @@ export default async (err, req, res, next) => {
     }
   }
 
-  if (err.name || (err.error && err.error.name)) {
-    if (err.name === "ValidationError" || err.error.name === "ValidationError") {
+  if (err.name || err.error) {
+    if (err.name === "ValidationError" || (err.error && err.error.name === "ValidationError")) {
       return ResponseManager.getResponseHandler(res).onError(
         err.name || err.error.name,
         HttpStatus.BAD_REQUEST,
