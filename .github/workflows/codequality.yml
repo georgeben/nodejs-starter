@@ -1,0 +1,30 @@
+name: Code Quality
+
+# Triggers the workflow on push or pull request
+on: [ push, pull_request ]
+env:
+  DATABASE_NAME: "database-name"
+  DATABASE_URI: "database-uri"
+  MONGO_DB_AUTH: "false"
+  JWT_SECRET: "test"
+  JWT_ISSUER: "test"
+  JWT_AUDIENCE: "audience"
+  AWS_IAM_USER_KEY: "hello"
+  AWS_IAM_USER_SECRET: "hi"
+  AWS_BUCKET_NAME: "test"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install NPM dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+      - name: Run tests
+        run: npm test
