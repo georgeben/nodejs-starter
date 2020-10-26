@@ -1,5 +1,5 @@
 # Node API
-
+![](https://github.com/georgeben/nodejs-starter/workflows/CI-CD-workflow/badge.svg)
 
 My NodeJS API starter template, so I don't have to waste time setting things up from scratch each time.
 
@@ -10,7 +10,7 @@ My NodeJS API starter template, so I don't have to waste time setting things up 
 - PM2 configuration
 - MongoDB configuration
 - Docker configuration
-- CI/CD workflows with Github Actions (It's currently set up to be hosted, but you can change it to any server you want by editing the cicd.yml file)
+- CI/CD workflows with Github Actions (It's currently set up to be hosted on Heroku, but you can change it to any server you want by editing the cicd.yml file)
 - Test setup with Mocha and Chai (with code coverage reports also)
 - Babel configurations
 
@@ -61,3 +61,6 @@ View the API Documentation here
 
 ## Contributing
 To contribute to this project, please read the Contributors Guidelines
+
+## Author
+[georgeben](https://github.com/georgeben)
