@@ -12,9 +12,9 @@ RUN apt-get update \
 # For security reasons don't run operations as the root user
 USER node
 
-RUN mkdir /home/node/miles_api
+RUN mkdir /home/node/app_name
 
-WORKDIR /home/node/miles_api
+WORKDIR /home/node/app_name
 
 COPY --chown=node:node package.json package-lock.json ./
 

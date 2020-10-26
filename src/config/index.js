@@ -48,7 +48,7 @@ const commonConfig = {
   jwtSecret: process.env.JWT_SECRET,
   jwtIssuer: process.env.JWT_ISSUER,
   jwtAudience: process.env.JWT_AUDIENCE,
-  clientUrl: process.env.CLIENT_URL || "https://miles.ng",
+  clientUrl: process.env.CLIENT_URL || "",
 };
 
 export default {

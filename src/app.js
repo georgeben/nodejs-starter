@@ -1,4 +1,5 @@
 import http from "http";
+import express from "express";
 import bodyParser from "body-parser";
 import expressRequestId from "express-request-id";
 import cors from "cors";
@@ -23,120 +24,119 @@ import httpClient from "./lib/httpClient";
 
 const { bodyLimit, allowedOrigins, logFormat } = config;
 
-export default async function configureApp(app) {
-  app.use(helmet());
-  const server = http.createServer(app);
+const app = express();
+app.use(helmet());
+const server = http.createServer(app);
 
-  app.use(expressRequestId());
+app.use(expressRequestId());
 
-  // Parse application/json
-  app.use(
-    bodyParser.json({
-      limit: bodyLimit,
-    }),
-  );
+// Parse application/json
+app.use(
+  bodyParser.json({
+    limit: bodyLimit,
+  }),
+);
 
-  // Parse application/x-www-form-urlencoded
-  app.use(bodyParser.urlencoded({ extended: true, limit: bodyLimit }));
+// Parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true, limit: bodyLimit }));
 
-  // setup dependency injection
-  const container = createContainer({
-    injectionMode: InjectionMode.PROXY,
-  });
+// setup dependency injection
+const container = createContainer({
+  injectionMode: InjectionMode.PROXY,
+});
 
-  container.register({
-    httpClient: asValue(httpClient),
-  });
+container.register({
+  httpClient: asValue(httpClient),
+});
 
-  // Load all repositories
-  container.loadModules(
+// Load all repositories
+container.loadModules(
+  [
     [
-      [
-        "./repositories/*.js",
-        {
-          lifetime: Lifetime.SCOPED,
-          register: asClass,
-        },
-      ],
+      "./repositories/*.js",
+      {
+        lifetime: Lifetime.SCOPED,
+        register: asClass,
+      },
     ],
-    {
-      // we want `AuthRepository` to be registered as `authRepository`.
-      formatName: "camelCase",
-      resolverOptions: {},
-      cwd: __dirname,
-    },
-  );
+  ],
+  {
+    // we want `AuthRepository` to be registered as `authRepository`.
+    formatName: "camelCase",
+    resolverOptions: {},
+    cwd: __dirname,
+  },
+);
 
-  // Load all models
-  container.loadModules(
+// Load all models
+container.loadModules(
+  [
     [
-      [
-        "./models/*.js",
-        {
-          lifetime: Lifetime.SCOPED,
-          register: asValue,
-        },
-      ],
+      "./models/*.js",
+      {
+        lifetime: Lifetime.SCOPED,
+        register: asValue,
+      },
     ],
-    {
-      cwd: __dirname,
-    },
-  );
+  ],
+  {
+    cwd: __dirname,
+  },
+);
 
-  // Middleware to create a scope per request.
-  app.use(scopePerRequest(container));
+// Middleware to create a scope per request.
+app.use(scopePerRequest(container));
 
-  app.use(requestLogger);
+app.use(requestLogger);
 
-  app.use(morgan(logFormat));
+app.use(morgan(logFormat));
 
-  app.use((req, res, next) => {
-    process.env.CLIENT_URL = req.headers.referer;
-    next();
-  });
+app.use((req, res, next) => {
+  process.env.CLIENT_URL = req.headers.referer;
+  next();
+});
 
-  // Enable CORS
-  app.use(
-    cors({
-      origin: (origin, cb) => {
-        if (allowedOrigins.trim() === "*") {
+// Enable CORS
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (allowedOrigins.trim() === "*") {
+        cb(null, true);
+      } else {
+        const origins = allowedOrigins.split(",");
+        if (origins.indexOf(origin) !== -1 || !origin) {
           cb(null, true);
         } else {
-          const origins = allowedOrigins.split(",");
-          if (origins.indexOf(origin) !== -1 || !origin) {
-            cb(null, true);
-          } else {
-            cb(new Error(`Origin('${origin}') not allowed`, false));
-          }
+          cb(new Error(`Origin('${origin}') not allowed`, false));
         }
-      },
-      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    }),
-  );
+      }
+    },
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }),
+);
 
-  // remove some headers here - Nginx will set them
-  app.use((req, res, next) => {
-    res.removeHeader("Vary");
-    res.removeHeader("Strict-Transport-Security");
-    next();
-  });
+// remove some headers here - Nginx will set them
+app.use((req, res, next) => {
+  res.removeHeader("Vary");
+  res.removeHeader("Strict-Transport-Security");
+  next();
+});
 
-  // Prevents the server from crashing when experiencing too much traffic
-  app.use(checkTraffic);
+// Prevents the server from crashing when experiencing too much traffic
+app.use(checkTraffic);
 
-  // Mount API routes
-  app.use("/", routes);
+// Mount API routes
+app.use("/", routes);
 
-  // Handle 404's
-  app.use(error404);
+// Handle 404's
+app.use(error404);
 
-  // Error handling middleware
-  app.use(errorHandler);
+// Error handling middleware
+app.use(errorHandler);
 
-  server.on("close", () => container.dispose());
+server.on("close", () => container.dispose());
 
-  // Connect to database
-  await connectDB(10, true);
+// Connect to database
+connectDB(10, true);
 
-  return server;
-}
+export default server;

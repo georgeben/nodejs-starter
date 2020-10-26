@@ -1,12 +1,18 @@
-# Miles-api
-![](https://github.com/Miles-ng/miles-api/workflows/CI-CD-workflow/badge.svg)
+# Node API
 
 
+My NodeJS API starter template, so I don't have to waste time setting things up from scratch each time.
 
-The API that powers both the miles.ng applications and the public API for making and tracking deliveries.
-
-## Project Specification
-The functional requirements of this project can be found [here](https://docs.google.com/document/d/10rfQdTUjFkphNpPZfRmZqbTOrMWkcz8ooLiMHM8IuNU/edit?usp=sharing)  
+## What you get
+- Dependency Injection
+- Delightful project structure
+- ESLint
+- PM2 configuration
+- MongoDB configuration
+- Docker configuration
+- CI/CD workflows with Github Actions (It's currently set up to be hosted, but you can change it to any server you want by editing the cicd.yml file)
+- Test setup with Mocha and Chai (with code coverage reports also)
+- Babel configurations
 
 ## Getting started
 Follow the instructions given below to get this project up and running on your local machine.
@@ -16,9 +22,9 @@ Make sure you have the following installed:
 - [Docker](https://docker.com)
 
 ### Installation
-1. Clone this repository by running `git clone https://github.com/Miles-ng/miles-api`
+1. Clone this repository by running `git clone https://github.com/georgeben/nodejs-starter.git`
 
-2. Change your directory to the project's directory by running `cd miles-api`
+2. Change your directory to the project's directory by running `cd nodejs-starter`
 3. Create a .env file and fill in all the values specified in the `env.schema` file
 4. Start the application by running `docker-compose up`. Make sure you have stable internet connection, as some docker images may need to be downloaded.
 5. Access the app by opening up http://localhost:3001/ on your browser.
@@ -43,15 +49,15 @@ To run tests,
 
 
 ## API Documentation
-View the API Documentation [here](http://docs.com)
+View the API Documentation here
 
 ## Technologies
-- Javascript 💻: Programming language
-- Node.js :zap: - As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
-- Express.js - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. :fire:
-- MongoDB 🌿: - MongoDB is a cross-platform document-oriented database.
-- Docker 🐳 - Docker is a tool designed to make it easier to create, deploy, and run applications by using containers.
-- Docker Compose 🐙 - A tool for defining and running multi-container Docker applications
+- Javascript
+- Node.js
+- Express.js 
+- MongoDB
+- Docker
+- Docker Compose
 
 ## Contributing
-To contribute to this project, please read the [Contributors Guidelines](https://github.com/Miles-ng/miles-api/blob/master/CONTRIBUTING.md)
+To contribute to this project, please read the Contributors Guidelines

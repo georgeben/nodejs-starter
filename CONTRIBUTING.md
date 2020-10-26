@@ -6,7 +6,7 @@ Follow these guidelines to contribute to this project. These are mostly guidelin
 Discuss the change you wish to make to the project e.g a bug fix, adding a new feature, etc, by creating an issue on the Project's issue tracker board.
 
 ### 2. Create a branch
-After creating an issue, set up the project on your machine (if you haven't already) by following the instructions in the projects [README](https://github.com/Miles-ng/miles-api/blob/master/README.md). Before adding your changes,
+After creating an issue, set up the project on your machine (if you haven't already) by following the instructions in the projects [README](). Before adding your changes,
 switch to the `develop` branch. The develop branch serves as an integration branch for features. Switch to the develop branch by typing `git checkout develop`. 
 Then create your new branch off develop. To create your new branch, use the following branching conventions:
 - Branches created should be named using the following format:  `{story type}-{2-3 word summary}`.  
@@ -53,5 +53,5 @@ pull request, verify that all the CI checks are passing and there is no merge co
 After successfully creating a PR, request a review from another developer, so your changes can be merged.
 
 ### 8. Deployment
-Any code change on the master branch or develop branch triggers a Github workflow that deploys the app to production and staging environments respectively. Currently, deployments are hosted on heroku. If the need to migrate the app to another cloud hosting service arises, edit the `deploy_to_staging` and  `deploy_to_production` jobs in the [CICD workflow](https://github.com/Miles-ng/miles-api/blob/master/.github/workflows/cicd.yml).
+Any code change on the master branch or develop branch triggers a Github workflow that deploys the app to production and staging environments respectively. Currently, deployments are hosted on heroku. If the need to migrate the app to another cloud hosting service arises, edit the `deploy_to_staging` and  `deploy_to_production` jobs in the CICD workflow.
 

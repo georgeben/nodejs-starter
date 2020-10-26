@@ -5,9 +5,9 @@ FROM node:12-stretch
 # For security reasons don't run operations as the root user
 USER node
 
-RUN mkdir /home/node/miles_api
+RUN mkdir /home/node/app_name
 
-WORKDIR /home/node/miles_api
+WORKDIR /home/node/app_name
 
 COPY --chown=node:node package.json package-lock.json ./
 
@@ -23,11 +23,11 @@ RUN apk -U upgrade \
 
 USER node
 
-RUN mkdir /home/node/miles_api
+RUN mkdir /home/node/app_name
 
-WORKDIR /home/node/miles_api
+WORKDIR /home/node/app_name
 
-COPY --from=0 /home/node/miles_api/node_modules /home/node/miles_api/node_modules
+COPY --from=0 /home/node/app_name/node_modules /home/node/app_name/node_modules
 
 COPY --chown=node:node . .
 

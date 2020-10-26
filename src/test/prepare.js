@@ -1,7 +1,7 @@
 import prepare from "mocha-prepare";
 import mongoUnit from "mongo-unit";
 
-const testDB = "miles_test";
+const testDB = "test_db";
 // Sets up a Fake MongoDB server in memory
 prepare(
   (done) => {

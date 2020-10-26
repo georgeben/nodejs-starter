@@ -1,7 +1,7 @@
 {
-  "name": "miles-api",
+  "name": "node-api",
   "version": "1.0.0",
-  "description": "The API that powers both the miles.ng applications and the public API for making and tracking deliveries",
+  "description": "App description",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha --require babel-core/register --require \"src/test/prepare\" \"src/test/**/**/*.test.js\" --exit --timeout 20000 --recursive",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Miles-ng/miles-api.git"
+    "url": "https://github.com/georgeben/nodejs-starter.git"
   },
-  "author": "MilesNG",
+  "author": "George Benjamin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Miles-ng/miles-api/issues"
+    "url": "https://github.com/georgeben/nodejs-starter.git"
   },
-  "homepage": "https://github.com/Miles-ng/miles-api#readme",
+  "homepage": "https://github.com/georgeben/nodejs-starter.git",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@hapi/joi-date": "^2.0.1",

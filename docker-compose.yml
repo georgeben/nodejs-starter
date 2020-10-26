@@ -7,12 +7,12 @@ services:
       - "27017:27017"
     volumes: 
       - mongodb-data:/data/db
-  miles-api:
+  node-api:
     build:
       context: .
       dockerfile: dev.Dockerfile
     volumes:
-      - ./src:/home/node/miles_api/src
+      - ./src:/home/node/app_name/src
     ports:
       - "3001:3001"
     depends_on: 

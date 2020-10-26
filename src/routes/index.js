@@ -7,9 +7,9 @@ router
   .route("/")
   .get((req, res) => {
     res.status(200).json({
-      message: "MilesNG API Documentation",
+      message: "Node API Documentation",
       links: {
-        documentation: "http://miles.ng",
+        documentation: "https://github.com/georgeben",
       },
     });
   })
